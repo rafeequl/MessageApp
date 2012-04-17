@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :participations
   
   def active_conversations
-    participations = self.participations.group(:conversation_id)
+    participations = self.participations.select('participations.id, participations.conversation_id').group(:conversation_id)
     conversation_ids = participations.map { |p| p.conversation_id }
     
     if conversation_ids.blank?
