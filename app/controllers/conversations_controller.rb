@@ -16,7 +16,7 @@ class ConversationsController < ApplicationController
   end
   
   def create
-    recipients = params[:conversation][:recipients].split(",")
+    recipients = params[:conversation][:recipients].gsub(/\s/, '').split(",")
     
     @conversation = Conversation.create_initial(:user => current_user, 
                                                 :body => params[:conversation][:body],
