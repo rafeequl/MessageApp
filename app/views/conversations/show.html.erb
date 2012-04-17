@@ -1,14 +1,30 @@
 <h1>Message</h1>
 
+<table class="table">
+  <tbody>
+		<% @messages.each do |message| %>
+			<tr>
+				<td width='200px'><%= current_user == message.user ? "You" : message.user.email %></td>
+				<td width='500px'><%= message.body %></td>
+				<td><%= distance_of_time_in_words_to_now message.created_at %> ago</td>
+			</tr>
+		<% end %>
+		
+	</tbody>
+</table>
 
-<% @messages.each do |message| %>
-	<p><%= message.user.email %> says <%= message.body %> . <%= time_ago_in_words message.created_at %> ago</p>
-<% end %>
 
 <h2>Reply</h2>
-<%= form_for @message, :url => reply_conversations_path do |f| %>
+<%= form_for @message, :url => reply_conversations_path, :class => 'form-horizontal' do |f| %>
 
-<%= f.text_field :body %><%= f.submit 'Reply' %>
+	<div class="control-group">
+  	<div class="controls">
+			<%= f.text_area :body, :rows => 3 %>
+    </div>
+  </div>
+
+
+<%= f.submit 'Reply', :class => 'btn btn-primary' %>
 <%= f.hidden_field :conversation_id %>
 
 <% end %>

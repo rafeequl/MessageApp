@@ -32,6 +32,7 @@
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "Inbox", conversations_path  %></li>
+              <li><%= current_user ? link_to("Sign out", destroy_user_session_path) : link_to("Sign in", new_user_session_path)  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
