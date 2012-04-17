@@ -5,7 +5,6 @@ Messageapp::Application.routes.draw do
 
   get "home/index"
   
-  resources :messages
   resources :conversations
 
   # The priority is based upon order of creation:

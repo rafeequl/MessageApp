@@ -1,5 +1,6 @@
 class Conversation < ActiveRecord::Base
   belongs_to :user
+  has_many :messages
   
   attr_accessor :recipients, :body
     
@@ -16,6 +17,7 @@ class Conversation < ActiveRecord::Base
     
     # create sender participation
     participation = sender.participations.build
+    participation.conversation = conversation
     participation.save
     
     # tell other recipients

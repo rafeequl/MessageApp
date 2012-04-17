@@ -1,0 +1,7 @@
+<h1>Inbox</h1>
+
+<ul>
+	<% @conversations.each do |c| %>
+		<li><%= c.user.email %> - <%= c.messages.last.body %></li>
+	<% end %>
+</ul>
