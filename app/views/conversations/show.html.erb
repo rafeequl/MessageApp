@@ -1,5 +1,14 @@
 <h1>Message</h1>
 
+
 <% @messages.each do |message| %>
 	<p><%= message.user.email %> says <%= message.body %> . <%= time_ago_in_words message.created_at %> ago</p>
+<% end %>
+
+<h2>Reply</h2>
+<%= form_for @message, :url => reply_conversations_path do |f| %>
+
+<%= f.text_field :body %><%= f.submit 'Reply' %>
+<%= f.hidden_field :conversation_id %>
+
 <% end %>

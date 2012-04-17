@@ -22,6 +22,7 @@ class Conversation < ActiveRecord::Base
     
     # tell other recipients
     recipients = params[:recipients]
+    puts "=========> #{recipients.size}"
     recipients.each do |r|
       recipient = User.find_by_email(r)
       if recipient
