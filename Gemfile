@@ -17,7 +17,12 @@ end
 gem 'jquery-rails'
 
 gem "mysql2"
-gem "rspec-rails", :group => [:development, :test]
+
+group :test do
+	gem "factory_girl_rails"
+	gem "rspec-rails"
+end
+
 group :assets do
   gem "twitter-bootstrap-rails"
 end
