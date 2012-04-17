@@ -30,3 +30,6 @@ end
 gem "simple_form"
 
 gem "devise"
+
+gem "heroku"
+gem "pg"
