@@ -1,0 +1,5 @@
+<h1>Message</h1>
+
+<% @messages.each do |message| %>
+	<p><%= message.user.email %> says <%= message.body %> . <%= time_ago_in_words message.created_at %> ago</p>
+<% end %>

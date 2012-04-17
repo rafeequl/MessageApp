@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     if conversation_ids.blank?
       return []
     else
-      return Conversation.find(conversation_ids)
+      return Conversation.where(:id => conversation_ids)
     end
     
   end

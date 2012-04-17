@@ -5,6 +5,11 @@ class ConversationsController < ApplicationController
     @conversations = current_user.active_conversations
   end
   
+  def show
+    @conversation = current_user.active_conversations.find_by_id(params[:id])
+    @messages = @conversation.messages.order('created_at DESC')
+  end
+  
   def new  
     @conversation = Conversation.new
   end
@@ -18,7 +23,7 @@ class ConversationsController < ApplicationController
     
     if @conversation
       flash[:notice] = "Message created"
-      redirect_to messages_path
+      redirect_to conversations_path
     else
       flash[:error] = "Something went wrong"
       redirect_to new_conversation_path

@@ -2,6 +2,6 @@
 
 <ul>
 	<% @conversations.each do |c| %>
-		<li><%= c.user.email %> - <%= c.messages.last.body %></li>
+		<li><%= c.user.email %> - <%= link_to c.messages.last.body, c %></li>
 	<% end %>
 </ul>
