@@ -37,6 +37,15 @@ class ConversationsController < ApplicationController
     @message.conversation_id = params[:message][:conversation_id]
     
     if @message.save
+      # activate conversation if its 2 way communication
+      participations = Participation.where(:conversation_id => params[:message][:conversation_id])
+      if participations.count == 2
+        participations.each do |p|
+          p.activate! unless p.active?
+        end
+      end
+        
+      
       flash[:notice] = "Message sent!"
       redirect_to :back
     else
@@ -45,4 +54,16 @@ class ConversationsController < ApplicationController
     end
   end
   
+  def destroy
+    @participation = current_user.participations.find_by_conversation_id(params[:id])
+    
+    if @participation.deactivate!
+      flash[:notice] = 'Conversation archived!'
+      redirect_to conversations_path
+    else
+      flash[:error] = 'Something went wrong'
+      redirect_to conversations_path
+    end
+    
+  end
 end

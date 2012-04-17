@@ -4,7 +4,8 @@ class Conversation < ActiveRecord::Base
   has_many :participations
   
   attr_accessor :recipients, :body
-    
+  
+
   def self.create_initial(params)
     # create conversation
     sender = params[:user]
@@ -34,4 +35,5 @@ class Conversation < ActiveRecord::Base
     end
   end
   
+
 end

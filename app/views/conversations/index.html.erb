@@ -11,6 +11,7 @@
 					</td>
 				<td><%= link_to c.messages.last.body, c %></td>
 				<td><%= distance_of_time_in_words_to_now c.messages.last.created_at %> ago</td>
+				<td><%= link_to "<i class='icon-remove'></i>".html_safe, conversation_path(c), :method => :delete %></td>
 			</tr>
 		<% end %>
 		
